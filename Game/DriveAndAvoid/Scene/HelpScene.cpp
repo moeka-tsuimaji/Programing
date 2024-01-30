@@ -7,7 +7,7 @@ HelpScene::HelpScene() : background_image(NULL)
 
 }
 
-HelpScene::HelpScene::HelpScene()
+HelpScene::~HelpScene()
 {
 
 }

@@ -6,6 +6,7 @@ private:
 	int score[6];        //スコアデータ
 	int rank[6];         //ランクデータ
 	char name[6][15];    //名前データ
+
 public:
 	RankingData();
 	~RankingData();

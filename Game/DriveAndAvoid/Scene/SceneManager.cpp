@@ -30,7 +30,7 @@ void SceneManager::Initialize()
 	}
 
 	//DXライブラリの初期化
-	if (ChangeWindowMode(TRUE) != DX_CHANGESCREEN_OK)
+	if (DxLib_Init() == -1)
 	{
 		throw("ウィンドウモードで起動できませんでした\n");
 	}
@@ -60,7 +60,7 @@ void SceneManager::Update()
 		//１フレーム当たりの時間に到達したら、更新および描画処理を行う
 		if ((now_time - start_time) >= DELTA_SECOND)
 		{
-			//フレーム開始時間を変更する
+			//フレーム開始時間を更新する
 			start_time = now_time;
 
 			//入力機能：更新処理

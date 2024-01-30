@@ -3,13 +3,14 @@
 #include"DxLib.h"
 
 RankingInputScene::RankingInputScene() : background_image(NULL),
-ranking(nullptr), score(0), name_num(0), cursor_x(0),
+ranking(nullptr), score(0), 
+                                                       name_num(0), cursor_x(0),
 cursor_y(0)
 {
 	memset(name, NULL, (sizeof(char) * 15));
 }
 
-RankingInputScene::RankingInputScene()
+RankingInputScene::~RankingInputScene()
 {
 
 }
@@ -76,7 +77,7 @@ void RankingInputScene::Draw() const
 
 	//–¼‘O“ü—ÍŽwŽ¦•¶Žš—ñ‚Ì•`‰æ
 	DrawString(150, 100, "ƒ‰ƒ“ƒLƒ“ƒO‚É“o˜^‚µ‚Ü‚·", 0xFFFFFF);
-	DrawFormatString(100, 220, GetColor(255, 255, 255), "%s", name);
+	DrawFormatString(100, 220, GetColor(255, 255, 255), ">%s", name);
 
 	//‘I‘ð—p•¶Žš‚ð•`‰æ
 	const int font_size = 25;
@@ -182,7 +183,7 @@ bool RankingInputScene::InputName()
 	{
 		if (cursor_y < 2)
 		{
-			name[name_num++] = 'a' + (cursor_y * 13);
+			name[name_num++] = 'a' + cursor_x  + (cursor_y * 13);
 			if (name_num == 14)
 			{
 				cursor_x = 0;

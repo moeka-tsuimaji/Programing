@@ -60,7 +60,7 @@ void ResultScene::Draw() const
 	DrawBox(150, 150, 490, 330, GetColor(0, 153, 0), TRUE);
 	DrawBox(150, 150, 490, 330, GetColor(0, 0, 0), FALSE);
 
-	DrawBox(500, 0, 640, 480, GetColor(0, 0, 0), TRUE);
+	DrawBox(500, 0, 640, 480, GetColor(0, 153, 0), TRUE);
 
 	SetFontSize(20);
 	DrawString(220, 170, "ゲームオーバー", GetColor(204, 0, 0));
@@ -68,8 +68,8 @@ void ResultScene::Draw() const
 	DrawString(180, 200, "走行距離　　　　　", GetColor(0, 0, 0));
 	for (int i = 0; i < 3; i++)
 	{
-		DrawRotaGraph(230, 230 + (1 * 20), 0.3f, DX_PI_F / 2, enemy_image[i], TRUE);
-		DrawFormatString(260, 222 + (i * 21), GetColor(255, 255, 255), "%6d x%4d=%6d",
+		DrawRotaGraph(230, 230 + (i * 20), 0.3f, DX_PI_F / 2, enemy_image[i], TRUE);
+		DrawFormatString(260, 222 + (i * 21), GetColor(255, 255, 255), "%6d x %4d=%6d",
 			enemy_count[i], (i + 1) * 50, (i + 1) * 50 * enemy_count[i]);
 	}
 	DrawString(180, 290, "スコア", GetColor(0, 0, 0));
@@ -107,12 +107,12 @@ void ResultScene::ReadResultData()
 	}
 
 	//結果を読み込む
-	fscanf_s(fp, "%6d,\n", &score);
+	fscanf_s(fp, "%d,\n", &score);
 
 	//避けた敵と得点を取得
 	for (int i = 0; i < 3; i++)
 	{
-		fscanf_s(fp, "%6d\n", &enemy_count[i]);
+		fscanf_s(fp, "%d,\n", &enemy_count[i]);
 	}
 
 	//ファイルクローズ

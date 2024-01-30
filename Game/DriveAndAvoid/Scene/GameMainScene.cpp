@@ -1,7 +1,7 @@
 #include"GameMainScene.h"
 #include"../Object/RankingData.h"
 #include"DxLib.h"
-#include<math.h>
+#include <math.h>
 
 GameMainScene::GameMainScene() : high_score(0), back_ground(NULL),
 barrier_image(NULL), mileage(0), player(nullptr),
@@ -25,13 +25,13 @@ void GameMainScene::Initialize()
 	//高得点値を読み込む
 	ReadHighScore();
 
-	//画僧の読み込み
+	//画像の読み込み
 	back_ground = LoadGraph("Resource/images/back.bmp");
 	barrier_image = LoadGraph("Resource/images/barrier.png");
 	int result = LoadDivGraph("Resource/images/car.bmp", 3, 3, 1, 63, 120, enemy_image);
 	
 	//エラーチェック
-	if (back_ground = -1)
+	if (back_ground == -1)
 	{
 		throw("Resource/images/back.bmpがありません\n");
 	}
@@ -170,7 +170,7 @@ void GameMainScene::Draw() const
 	//体力ゲージの描画
 	fx = 510.0f;
 	fy = 430.0f;
-	DrawFormatString(fx, fy, GetColor(0, 0, 0), "P+AYER HP");
+	DrawFormatString(fx, fy, GetColor(0, 0, 0), "PLAYER HP");
 	DrawBoxAA(fx, fy + 20.0f, fx + (player->GetHp() * 100 / 1000),
 		fy + 40.0f, GetColor(255, 0, 0), TRUE);
 	DrawBoxAA(fx, fy + 20.0f, fx + 100.0f, fy + 40.0f, GetColor(0, 0, 0), FALSE);
@@ -189,7 +189,7 @@ void GameMainScene::Finalize()
 	//リザルトデータの書き込み
 	FILE* fp = nullptr;
 	//ファイルオープン
-	errno_t result = fopen_s(&fp, "Resource/dat/result_csv", "w");
+	errno_t result = fopen_s(&fp, "Resource/dat/result_data.csv", "w");
 
 	//エラーチェック
 	if (result != 0)
